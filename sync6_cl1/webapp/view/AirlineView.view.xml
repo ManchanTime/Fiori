@@ -1,0 +1,48 @@
+<mvc:View controllerName="sync6.cl1.sync6cl1.controller.AirlineView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+
+        <Panel >
+            <VBox >
+                <t:Table id="scarrTable" rows="{/AirlineSet}" selectionMode="None" paste="onPaste" ariaLabelledBy="Airline master">
+                    <t:extension>
+                        <OverflowToolbar style="Clear">
+                            <Title id="title" text="Products"/>
+                        </OverflowToolbar>
+                    </t:extension>
+                    <t:columns>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#AirlineSet/Carrid/@sap:label}" />
+                            <t:template>
+                                <Text text="{Carrid}" wrapping="false" class = "centeredText"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#AirlineSet/Carrname/@sap:label}" />
+                            <t:template>
+                                <Text text="{Carrname}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#AirlineSet/Currcode/@sap:label}" />
+                            <t:template>
+                                <Text text="{Currcode}" wrapping="false" class = "centeredText"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="urlColumn" width="11rem" autoResizable="true">
+                            <Label text="{/#AirlineSet/Url/@sap:label}" />
+                            <t:template>
+                                <Text text="{Url}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table>
+            </VBox>
+        </Panel>
+
+    </Page>
+</mvc:View>

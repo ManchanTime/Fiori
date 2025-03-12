@@ -1,0 +1,15 @@
+{
+
+    "gs_student" : {
+        "Name": "Lee",
+        "Addr": "Seoul",
+        "Major": "Biological"
+    },
+
+    "gs_vehicle" : {
+        "Kind": "Truck",
+        "Weight": "25",
+        "Length": "8m"
+    }
+
+}

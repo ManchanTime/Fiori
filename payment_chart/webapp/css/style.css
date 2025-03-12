@@ -1,0 +1,4 @@
+/* Enter your custom styles here */
+#idLineFrame .v-datapoint {
+    fill: #FF0000; /* 빨간색 */
+}

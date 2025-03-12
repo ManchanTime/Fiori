@@ -1,0 +1,7 @@
+<mvc:View controllerName="sync.cl1.synccl1.controller.App"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <App id="app">
+    </App>
+</mvc:View>

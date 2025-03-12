@@ -1,0 +1,114 @@
+<mvc:View controllerName="sync.cl1.synccl1.controller.Airline_Schedule"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+
+        <Panel >
+            <VBox >
+                <t:Table id="spfliTable" rows="{/ScheduleSet}" selectionMode="None" paste="onPaste" ariaLabelledBy="Airline Schedule">
+                    <t:extension>
+                        <OverflowToolbar style="Clear">
+                            <Title id="title" text="Airline Schedule"/>
+                        </OverflowToolbar>
+                    </t:extension>
+                    <t:columns>
+                        <t:Column id="myColumnId" width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Carrid/@sap:label}"/>
+                            <t:template>
+                                <Text text="{Carrid}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Connid/@sap:label}" />
+                            <t:template>
+                                <Text text="{Connid}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Countryfr/@sap:label}" />
+                            <t:template>
+                                <Text text="{Countryfr}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Cityfrom/@sap:label}" />
+                            <t:template>
+                                <Text text="{Cityfrom}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Airpfrom/@sap:label}" />
+                            <t:template>
+                                <Text text="{Airpfrom}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Countryto/@sap:label}" />
+                            <t:template>
+                                <Text text="{Countryto}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Cityto/@sap:label}" />
+                            <t:template>
+                                <Text text="{Cityto}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Airpto/@sap:label}" />
+                            <t:template>
+                                <Text text="{Airpto}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Fltime/@sap:label}" />
+                            <t:template>
+                                <Text text="{Fltime}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Deptime/@sap:label}" />
+                            <t:template>
+                                <Text text="{Deptime}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Arrtime/@sap:label}" />
+                            <t:template>
+                                <Text text="{Arrtime}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Distance/@sap:label}" />
+                            <t:template>
+                                <Text text="{Distance}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Distid/@sap:label}" />
+                            <t:template>
+                                <Text text="{Distid}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Fltype/@sap:label}" />
+                            <t:template>
+                                <Text text="{Fltype}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Period/@sap:label}" />
+                            <t:template>
+                                <Text text="{Period}" wrapping="false" class="centeredText" />
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table>
+            </VBox>
+        </Panel>
+
+    </Page>
+</mvc:View>

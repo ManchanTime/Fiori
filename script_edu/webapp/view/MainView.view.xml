@@ -1,0 +1,60 @@
+<mvc:View controllerName="sync6.cl1.scriptedu.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <VBox >
+            <Panel >
+                <HBox >
+                    <Input id="word" placeholder="Enter value" width="150px"/>
+                    <Button id="btn1" text="click" press="onFruits()"/>
+                    <Button id="btn5" text="{button>/Btext}" icon="{button>/Bicon}" press="onWidth()"></Button>
+                </HBox>
+            </Panel>
+
+
+            <Panel >
+                <HBox >
+                    <Input id="num1" width="50px"/>
+                    <Label text="+"/>
+                    <Input id="num2" width="50px"/>
+                    <Label text="="/>
+                    <Input id="result1" width="100px" enabled="false"></Input>
+                    <Button id="btn2" text="Calc" press="onAdd()" icon="sap-icon://simulate"></Button>
+                </HBox>
+            </Panel>
+
+            <Panel >
+                <HBox >
+                    <Label text="for(a;b;c)"/>
+                    <Button id="btn3" text="" press="onFor()" icon="sap-icon://repost"></Button>
+                </HBox>
+            </Panel>
+
+            <Panel >
+                <HBox >
+                    <Button id="btn4" text="{/Btntext}" icon="{/Btnicon}"/>
+                    <Input id="input1" value="{/gs_input/Intext}" placeholder="{/gs_input/Inholder}"/>
+                    <Label text="{/gs_label/Latext}"></Label>
+                </HBox>
+            </Panel>
+
+            <Panel >
+                <HBox >
+                    <Input id="car" value="{student>/gs_vehicle/Kind}" description="{student>/gs_vehicle/Length}"/>
+                </HBox>
+            </Panel>
+
+            <Panel >
+                <HBox >
+                    <Button id="btn6" text="Clear" icon="sap-icon://clear-all" press="onClear()"></Button>
+                </HBox>
+            </Panel>
+
+            <Panel >
+                <HBox >
+                    <Button id="btn7" text="{confirm>/BtnText}" width="{}"></Button>
+                </HBox>
+            </Panel>
+        </VBox>
+    </Page>
+</mvc:View>

@@ -1,0 +1,122 @@
+{
+    "_version": "1.60.0",
+    "sap.app": {
+        "id": "sync6.cl1.paymentchart",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.16.5",
+            "toolsId": "c9cf069b-d2d5-468d-a28f-dd27c9fa0fa5"
+        },
+        "dataSources": {
+            "ZCDS_PAYSUM16_01_CDS_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZCDS_PAYSUM16_01_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/mainService/ZCDS_PAYSUM16_01_CDS_VAN.xml"
+                }
+            },
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZCDS_PAYSUM16_01_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZCDS_PAYSUM16_01_CDS_VAN"
+                    ],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.120.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "sync6.cl1.paymentchart.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "transition": "slide",
+                "type": "View",
+                "viewType": "XML",
+                "path": "sync6.cl1.paymentchart.view",
+                "async": true,
+                "viewPath": "sync6.cl1.paymentchart.view"
+            },
+            "routes": [
+                {
+                    "name": "RouteChatView",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetChatView"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetChatView": {
+                    "id": "ChatView",
+                    "name": "ChatView"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "sync6.cl1.paymentchart.view.App",
+            "type": "XML",
+            "id": "App"
+        }
+    }
+}

@@ -1,0 +1,46 @@
+<mvc:View controllerName="sync6.cl1.paymentchart.controller.ChatView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:layout="sap.ui.layout"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:m="sap.suite.ui.microchart">
+
+    <Page id="page" title="{i18n>title}">
+        <VBox>
+            <viz:VizFrame id="idLineFrame" uiConfig="{applicationSet:'fiori'}" height="400px" width="1200px" vizType='column'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{/PaysumSet}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Airline" value="{Carrid}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Price" value="{Price}" />
+                            <viz.data:MeasureDefinition name="Total" value="{Paymentsum}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="Price" />
+                    <viz.feeds:FeedItem id='valueAxisFeed2' uid="valueAxis" type="Measure" values="Total" />
+                    <viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="Airline" />
+                </viz:feeds>
+
+                <viz:dependents>
+                    <viz:Popover id="idPopOver"></viz:Popover>
+                </viz:dependents>
+
+            </viz:VizFrame>
+
+            <FlexBox width="700px" height="400px" alignItems="Start" justifyContent="SpaceBetween">
+                <m:InteractiveDonutChart displayedSegments="20" segments="{/PaysumSet}">
+
+                    <m:InteractiveDonutChartSegment label="{Carrid}" value="{=parseFloat(${Paymentsum})}" displayedValue="{Paymentsum}" color="Critical" />
+
+                </m:InteractiveDonutChart>
+            </FlexBox>
+        </VBox>
+    </Page>
+</mvc:View>

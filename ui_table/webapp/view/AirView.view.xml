@@ -1,0 +1,76 @@
+<mvc:View xmlns:rowmodes="sap.ui.table.rowmodes" controllerName="sync6.cl1.uitable.controller.AirView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:t="sap.ui.table">
+    <Page id="page" title="{i18n>title}">
+
+        <Panel >
+            <t:Table rows="{/AirlineSet}" selectionMode="Single" paste="onPaste" ariaLabelledBy="title" visibleRowCount="{= ${/AirlineSet}.length }">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title" text="Products"/>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column width="11rem">
+                        <Label text="Airline" />
+                        <t:template>
+                            <Text text="{Carrid}" wrapping="false" class="centeredText"></Text>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="11rem">
+                        <Label text="Airline name" />
+                        <t:template>
+                            <Text text="{Carrname}" wrapping="false"></Text>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="11rem">
+                        <Label text="Home page" />
+                        <t:template>
+                            <Text text="{Url}" wrapping="false"></Text>
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+
+
+            <t:Table rows="{airline>/AirjsonSet}" selectionMode="Single" paste="onPaste" ariaLabelledBy="title">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title2" text="Additional Products"/>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column width="11rem">
+                        <Label text="Airline" />
+                        <t:template>
+                            <Text text="{airline>Carrid}" wrapping="false" class="centeredText"></Text>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="11rem">
+                        <Label text="Airline name" />
+                        <t:template>
+                            <Text text="{airline>Carrname}" wrapping="false"></Text>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="11rem">
+                        <Label text="Price" />
+                        <t:template>
+                            <Text text="{airline>Price}" wrapping="false"></Text>
+                        </t:template>
+                    </t:Column>
+                    <t:Column width="11rem">
+                        <Label text="Unit" />
+                        <t:template>
+                            <Text text="{airline>Curkey}" wrapping="false" class="centeredText"></Text>
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+
+        </Panel>
+
+    </Page>
+</mvc:View>

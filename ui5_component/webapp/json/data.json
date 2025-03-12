@@ -1,0 +1,23 @@
+{
+
+    "gs_button" : {
+        "Text" : "Check",
+        "Width" : "200px",
+        "Enabled" : false
+    },
+
+    "gs_view1" : {
+        "Value" : "입력필드",
+        "Description" : "Input field",
+        "MaxLength" : 20,
+        "Width" : "300px",
+        "ShowClearIcon" : true
+    },
+
+    "gs_view2" : {
+        "Description" : "컨트롤러에서 세팅",
+        "Width" : "300px",
+        "MaxLength" : 10
+    }
+
+}

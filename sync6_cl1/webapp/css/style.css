@@ -1,0 +1,6 @@
+/* Enter your custom styles here */
+.centeredText {
+    text-align: center !important;
+    display: block;
+    width: 100%;
+}

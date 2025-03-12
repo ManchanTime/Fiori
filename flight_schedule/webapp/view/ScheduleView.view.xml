@@ -1,0 +1,75 @@
+<mvc:View controllerName="sync6.cl1.flightschedule.controller.ScheduleView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified">
+    <Page id="page" title="{i18n>title}">
+
+        <Panel >
+            <VBox >
+                <t:Table rows="{/ScheduleSet}" selectionMode="None" paste="onPaste" ariaLabelledBy="title">
+                    <t:extension>
+                        <OverflowToolbar style="Clear">
+                            <Title id="uiTitle" text="Flight schedule"/>
+                        </OverflowToolbar>
+                    </t:extension>
+                    <t:columns>
+                        <t:Column width="11rem" resizable="true" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Carrid/@sap:label}" />
+                            <t:template>
+                                <Text text="{Carrid}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" resizable="true" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Connid/@sap:label}" />
+                            <t:template>
+                                <Text text="{Connid}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" resizable="true" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Fldate/@sap:label}" />
+                            <t:template>
+                                <Text text="{Fldate}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" resizable="true" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Price/@sap:label}" />
+                            <t:template>
+                                <!-- <Text text="{Price}" wrapping="false" /> -->
+                                <Text text="{
+                                            parts:[{path:'Price'},{path:'Currency'}],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {showMeasure: true }
+                                            }" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" resizable="true" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Currency/@sap:label}" />
+                            <t:template>
+                                <Text text="{Currency}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" resizable="true" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Planetype/@sap:label}" />
+                            <t:template>
+                                <Text text="{Planetype}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" resizable="true" autoResizable="true">
+                            <Label text="{/#ScheduleSet/Paymentsum/@sap:label}" />
+                            <t:template>
+                            <!-- 금액 필드 나타내기(수량은 unit임) -->
+                                <Text text="{
+                                            parts:[{path:'Paymentsum'},{path:'Currency'}],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {showMeasure: true }
+                                            }" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table>
+            </VBox>
+        </Panel>
+
+    </Page>
+</mvc:View>

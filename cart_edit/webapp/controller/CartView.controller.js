@@ -75,16 +75,15 @@ sap.ui.define([
 
         onCreate() {
             let oModel = this.getView().getModel();
-            let vAmount = this.getView().byId("Amount").getValue();
-            let cAmount = vAmount.replaceAll(",", "");
-
+            let vAmount = this.getView().byId("Amount").getValue().replaceAll(",", "");
+          
             let oCreate = {
                 Shop: this.getView().byId("Shop").getValue(),
                 CustomId: this.getView().byId("CustomId").getValue(),
                 CartNo: parseInt(this.getView().byId("CartNo").getValue()),
                 Matnr: this.getView().byId("Matnr").getValue(),
                 Maktx: this.getView().byId("Maktx").getValue(),
-                Amount: cAmount,
+                Amount: vAmount,
                 Waers: this.getView().byId("Waers").getValue(),
                 GoodsCnt: parseInt(this.getView().byId("GoodsCnt").getValue()),
                 Kind: this.getView().byId("Kind").getValue()

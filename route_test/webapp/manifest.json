@@ -1,0 +1,108 @@
+{
+    "_version": "1.65.0",
+    "sap.app": {
+        "id": "sync6.cl1.routetest",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.16.5",
+            "toolsId": "38ea3c8e-9407-4593-92c5-e0c787c199c9"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.133.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "sync6.cl1.routetest.i18n.i18n"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "transition": "slide",
+                "type": "View",
+                "viewType": "XML",
+                "path": "sync6.cl1.routetest.view",
+                "async": true,
+                "viewPath": "sync6.cl1.routetest.view"
+            },
+            "routes": [
+                {
+                    "name": "RouteFirstView",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetFirstView"
+                    ]
+                },
+                {
+                    "name": "RouteSecondView",
+                    "pattern": "second",
+                    "target": [
+                        "TargetSecondView"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetFirstView": {
+                    "id": "FirstView",
+                    "name": "FirstView"
+                },
+                "TargetSecondView": {
+                    "id": "SecondView",
+                    "name": "SecondView"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "sync6.cl1.routetest.view.App",
+            "type": "XML",
+            "id": "App"
+        }
+    }
+}

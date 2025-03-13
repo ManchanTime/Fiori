@@ -120,7 +120,7 @@ sap.ui.define([
                 Gjahr: this.getView().byId("Gjahr").getValue(),
                 Blart: this.getView().byId("Blart").getValue(),
                 Budat: cBudat,
-                Belnr: this.getView().byId("Belnr").getValue().toString().padStart(10, "0"),
+                Belnr: this.getView().byId("Belnr").getValue().padStart(10, "0"),
                 Bktxt: this.getView().byId("Bktxt").getValue(),
                 Waers: this.getView().byId("Waers").getValue(),
                 Wrbtr: vWrbtr,
@@ -130,7 +130,7 @@ sap.ui.define([
             oModel.update(`/DocumentSet(Bukrs='${oUpdate.Bukrs}',Belnr='${oUpdate.Belnr}',Gjahr='${oUpdate.Gjahr}')`,
                 oUpdate,
                 {
-                    method: "MERGE",
+                    method: "PATCH",
                     success() {
                         oModel.refresh();
                         MessageToast.show("Update success!!");

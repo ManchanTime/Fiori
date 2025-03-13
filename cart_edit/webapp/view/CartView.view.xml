@@ -1,0 +1,117 @@
+<mvc:View controllerName="sync6.cl1.cartedit.controller.CartView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Page id="page" title="{i18n>title}">
+
+        <Panel >
+            <VBox >
+                <t:Table id="cartTable" rows="{/CartSet}" selectionMode="Single" paste="onPaste" ariaLabelledBy="title" >
+                    <t:extension>
+                        <OverflowToolbar >
+                            <Button text="Search" icon="sap-icon://search" press="onSearch" />
+                            <Input id="IMaktx" placeholder="Material text" width="12rem" />
+                            <Input id="ICustomId" placeholder="Customer ID" width="12rem" />
+                        </OverflowToolbar>
+                    </t:extension>
+                    <t:columns>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Shop/@sap:label}" />
+                            <t:template>
+                                <Text text="{Shop}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/CustomId/@sap:label}" />
+                            <t:template>
+                                <Text text="{CustomId}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/CartNo/@sap:label}" />
+                            <t:template>
+                                <Text text="{CartNo}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Matnr/@sap:label}" />
+                            <t:template>
+                                <Text text="{Matnr}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Maktx/@sap:label}" />
+                            <t:template>
+                                <Text text="{Maktx}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Amount/@sap:label}" />
+                            <t:template>
+                                <Text text="{
+                                    parts:[{path:'Amount'},{path:'Waers'}],
+                                    type: 'sap.ui.model.type.Currency',
+                                    formatOptions: {showMeasure: true}
+                                }" wrapping="false"></Text>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Waers/@sap:label}" />
+                            <t:template>
+                                <Text text="{Waers}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/GoodsCnt/@sap:label}" />
+                            <t:template>
+                                <Text text="{GoodsCnt}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Kind/@sap:label}" />
+                            <t:template>
+                                <Text text="{Kind}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table>
+                <OverflowToolbar >
+                    <ToolbarSpacer width="45rem" />
+                    <Label text="Contents" />
+                    <Button text="Clear" icon="sap-icon://clear-all" press="onClear" />
+                    <Button text="Display" icon="sap-icon://display" press="onDisplay" />
+                    <Button text="Create" icon="sap-icon://create" press="onCreate" />
+                    <Button text="Edit" icon="sap-icon://edit" press="onUpdate" />
+                    <Button text="Delete" icon="sap-icon://delete" press="onDelete" />
+                </OverflowToolbar>
+
+                <f:SimpleForm id="contentForm" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="Shop code" />
+                        <Input id="Shop" placeholder="Shop" width="5rem" maxLength="4"/>
+                        <Label text="Customer id" />
+                        <Input id="CustomId" placeholder="CustomId" width="7rem" maxLength="4"/>
+                        <Label text="Cart number" />
+                        <Input id="CartNo" placeholder="CartNo" width="7rem"/>
+                        <Label text="Material Number" />
+                        <Input id="Matnr" placeholder="Material Number" width="10rem"/>
+                        <Label text="Material Description" />
+                        <Input id="Maktx" placeholder="Material Description" width="10rem"/>
+                        <Label text="Document currency" />
+                        <Input id="Amount" placeholder="Document currency" width="15rem"/>
+                        <Label text="Currency" />
+                        <Input id="Waers" placeholder="Currency" width="5rem"/>
+                        <Label text="Goods count" />
+                        <Input id="GoodsCnt" placeholder="Amount" width="10rem"/>
+                        <Label text="Goods kind" />
+                        <Input id="Kind" placeholder="Kind" width="10rem" maxLength="2"/>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </Panel>
+
+    </Page>
+</mvc:View>

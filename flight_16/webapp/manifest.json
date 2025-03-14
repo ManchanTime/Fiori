@@ -1,7 +1,7 @@
 {
     "_version": "1.60.0",
     "sap.app": {
-        "id": "sync6.cl1.documentedit16",
+        "id": "sync6.cl1.flight16",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -13,11 +13,11 @@
         "sourceTemplate": {
             "id": "@sap/generator-fiori:basic",
             "version": "1.16.5",
-            "toolsId": "25dcbb27-0afe-4ede-9c5b-e983d2b9d4c2"
+            "toolsId": "07a61ee7-fffc-4cc1-8651-758b84fecdb7"
         },
         "dataSources": {
             "mainService": {
-                "uri": "/sap/opu/odata/sap/ZGWCL1DOCU16_SRV/",
+                "uri": "/sap/opu/odata/sap/ZGWC1SCARR16_SRV/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
@@ -60,7 +60,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "sync6.cl1.documentedit.i18n.i18n"
+                    "bundleName": "sync6.cl1.flight16.i18n.i18n"
                 }
             },
             "": {
@@ -84,28 +84,28 @@
                 "transition": "slide",
                 "type": "View",
                 "viewType": "XML",
-                "path": "sync6.cl1.documentedit.view",
+                "path": "sync6.cl1.flight16.view",
                 "async": true,
-                "viewPath": "sync6.cl1.documentedit.view"
+                "viewPath": "sync6.cl1.flight16.view"
             },
             "routes": [
                 {
-                    "name": "RouteDocuView",
+                    "name": "RouteFlightView",
                     "pattern": ":?query:",
                     "target": [
-                        "TargetDocuView"
+                        "TargetFlightView"
                     ]
                 }
             ],
             "targets": {
-                "TargetDocuView": {
-                    "id": "DocuView",
-                    "name": "DocuView"
+                "TargetFlightView": {
+                    "id": "FlightView",
+                    "name": "FlightView"
                 }
             }
         },
         "rootView": {
-            "viewName": "sync6.cl1.documentedit.view.App",
+            "viewName": "sync6.cl1.flight16.view.App",
             "type": "XML",
             "id": "App"
         }

@@ -1,0 +1,124 @@
+<mvc:View controllerName="sync6.cl1.flight16.controller.FlightView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table">
+    <Page id="page" title="{i18n>title}">
+
+        <SplitContainer id="AirlineSplit" initialDetail="detail" initialMaster="master">
+            <masterPages>
+                <Page id="master" title="Airline" backgroundDesign= "List">
+                    <List items="{/AirlineSet}" >
+                        <StandardListItem id="Carrname" icon="sap-icon://flight" title="{Carrname}" description="{Carrid}" press="onDetail" type="Navigation"/>
+                    </List>
+                </Page>
+            </masterPages>
+            <detailPages>
+                <Page id="detail1" title="Detail" backgroundDesign= "Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                    <VBox >
+                        <t:Table id="sflightTable" rows="{/ScheduleSet}" title="Flight Info" visible="false" selectionMode="None" paste="onPaste" cellClick="onSpfli" ariaLabelledBy="title" visibleRowCountMode="Auto" minAutoRowCount="5">
+                            <t:extension>
+                                <OverflowToolbar >
+                                    <!-- <Label text="Airline Schedule"></Label> -->
+                                    <!-- <Button text="Search" icon="sap-icon://search" press="onSearch" />
+                                    <Input id="IBktxt" placeholder="Header text" width="12rem" />
+                                    <Input id="IBlart" placeholder="Type" width="5rem" /> -->
+                                </OverflowToolbar>
+                            </t:extension>
+                            <t:columns>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#ScheduleSet/Carrid/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Carrid}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#ScheduleSet/Connid/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Connid}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#ScheduleSet/Countryfr/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Countryfr}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#ScheduleSet/Cityfrom/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Cityfrom}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#ScheduleSet/Countryto/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Countryto}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#ScheduleSet/Cityto/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Cityto}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                            </t:columns>
+                        </t:Table>
+                        <OverflowToolbar />
+                        <t:Table id="scheduleTable" rows="{/FlightSet}" title="Flight Schedule" visible="false" selectionMode="None" paste="onPaste" ariaLabelledBy="title" cellClick="onSflight" visibleRowCountMode="Auto" minAutoRowCount="10">
+                            <t:extension>
+                                <OverflowToolbar >
+                                    <!-- <Button text="Search" icon="sap-icon://search" press="onSearch" /> -->
+                                    <!-- <Input id="IBktxt" placeholder="Header text" width="12rem" />
+                                    <Input id="IBlart" placeholder="Type" width="5rem" /> -->
+                                </OverflowToolbar>
+                            </t:extension>
+                            <t:columns>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#FlightSet/Carrid/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Carrid}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#FlightSet/Connid/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Connid}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#FlightSet/Fldate/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Fldate}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#FlightSet/Price/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{
+                                            parts:[{path:'Price'},{path:'Currency'}],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {showMeasure: true }
+                                        }" wrapping="false" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#FlightSet/Currency/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Currency}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="auto" flexible="true" resizable="true" autoResizable="true">
+                                    <Label text="{/#FlightSet/Planetype/@sap:label}" />
+                                    <t:template>
+                                        <Text text="{Planetype}" wrapping="false" class="centeredText"/>
+                                    </t:template>
+                                </t:Column>
+                            </t:columns>
+                        </t:Table>
+                    </VBox>
+                </Page>
+            </detailPages>
+        </SplitContainer>
+
+    </Page>
+</mvc:View>

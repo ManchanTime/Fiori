@@ -1,0 +1,106 @@
+<mvc:View controllerName="sync6.cl1.shopcartedit.controller.CartView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Page id="page" title="{i18n>title}">
+        <Panel >
+            <VBox >
+                <t:Table id="cartTable" rows="{/CartSet}" selectionMode="Single" paste="onPaste" ariaLabelledBy="title" visibleRowCountMode="Auto" minAutoRowCount="8">
+                    <t:extension>
+                        <OverflowToolbar >
+                            <Button text="Search" icon="sap-icon://search" press="onSearch" />
+                            <Input id="IRemark" placeholder="Remark" width="15rem" />
+                            <Input id="IBelnr" placeholder="Document header" width="16rem" />
+                        </OverflowToolbar>
+                    </t:extension>
+                    <t:columns>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Ryear/@sap:label}" />
+                            <t:template>
+                                <Text text="{Ryear}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Rbukrs/@sap:label}" />
+                            <t:template>
+                                <Text text="{Rbukrs}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Belnr/@sap:label}" />
+                            <t:template>
+                                <Text text="{Belnr}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Racct/@sap:label}" />
+                            <t:template>
+                                <Text text="{Racct}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Remark/@sap:label}" />
+                            <t:template>
+                                <Text text="{Remark}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Hsl/@sap:label}" />
+                            <t:template>
+                                <Text text="{
+                                        parts:[{path:'Hsl'},{path:'Rtcur'}],
+                                        type: 'sap.ui.model.type.Currency',
+                                        formatOptions: {showMeasure: true }
+                                    }" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/Rtcur/@sap:label}" />
+                            <t:template>
+                                <Text text="{Rtcur}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="{/#CartSet/PostYn/@sap:label}" />
+                            <t:template>
+                                <Text text="{PostYn}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table>
+                <OverflowToolbar >
+                    <ToolbarSpacer width="45rem" />
+                    <Label text="Contents" />
+                    <Button text="Clear" icon="sap-icon://clear-all" press="onClear" />
+                    <Button text="Display" icon="sap-icon://display" press="onDisplay" />
+                    <Button text="Create" icon="sap-icon://create" press="onCreate" />
+                    <Button text="Edit" icon="sap-icon://edit" press="onUpdate" />
+                    <Button text="Delete" icon="sap-icon://delete" press="onDelete" />
+                </OverflowToolbar>
+                <f:SimpleForm id="contentForm" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="General Ledger Fiscal Year" />
+                        <Input id="Ryear" placeholder="Year" width="7rem" maxLength="3"/>
+                        <Label text="Company Code" />
+                        <Input id="Rbukrs" placeholder="Company" width="7rem" maxLength="4"/>
+                        <Label text="Document no" />
+                        <Input id="Belnr" placeholder="Document no" width="10rem" maxLength="10"/>
+                        <Label text="Account Number" />
+                        <Input id="Racct" placeholder="Account Number" width="10rem" maxLength="10"/>
+                        <Label text="G/L Account Text" />
+                        <Input id="Remark" placeholder="Item Text" width="30rem"/>
+                        <Label text="Amount in Company Code Currency" />
+                        <Input id="Hsl" placeholder="Amount" width="10rem"/>
+                        <Label text="Balance Transaction Currency" />
+                        <Input id="Rtcur" placeholder="Balance" width="10rem" maxLength="5"/>
+                        <Label text="Posting indicator" />
+                        <Input id="PostYn" placeholder="Y" width="1rem" maxLength="1"/>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </Panel>
+    </Page>
+</mvc:View>

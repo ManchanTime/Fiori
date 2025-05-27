@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: cl1.test16.cl1.test16
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://bgissap1.bgissap.co.kr:8000
+          client: '100'
+        app:
+          name: ZCL116TEST_01  
+          description: cl116test
+          package: ZC102
+          transport: EFXK901109
+          # package: "$TMP"        # ✅ 로컬 패키지 (WAPA 무제한 허용)
+          # transport: ""          # ✅ 전송 요청 없이 배포
+        exclude:
+          - /test/

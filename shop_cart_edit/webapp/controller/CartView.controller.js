@@ -18,7 +18,7 @@ sap.ui.define([
 
             let vRemark = this.getView().byId("IRemark").getValue();
             let vBelnr = this.getView().byId("IBelnr").getValue();
-
+            
             if (vRemark !== '') {
                 oFilter = new Filter({
                     path: 'Remark',

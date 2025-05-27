@@ -29,17 +29,17 @@ sap.ui.define([
 
                 ],
 
-                ScheduleSet : [
+                ScheduleSet: [
                     {
-                        Carrid : "AA",
-                        Connid : "0100",
-                        Cityfrom : "NEW YORK"
+                        Carrid: "AA",
+                        Connid: "0100",
+                        Cityfrom: "NEW YORK"
                     },
 
                     {
-                        Carrid : "AA",
-                        Connid : "0101",
-                        Cityfrom : "LA"
+                        Carrid: "AA",
+                        Connid: "0101",
+                        Cityfrom: "LA"
                     },
                 ]
 
@@ -49,7 +49,8 @@ sap.ui.define([
             let oModel2 = new JSONModel("/json/airline.json");
             this.getView().setModel(oModel);
             this.getView().setModel(oModel2, "airline");
-
+            console.log("모델 타입:", oModel2.constructor.name);
+            console.log(oModel2);
         }
     });
 });

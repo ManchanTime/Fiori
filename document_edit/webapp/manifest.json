@@ -17,7 +17,7 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "/sap/opu/odata/sap/ZGWCL1DOCU16_SRV/",
+                "uri": "/sap/opu/odata/sap/ZCDS_P_DOCU16_CDS/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],

@@ -17,9 +17,9 @@ builder:
           url: http://bgissap1.bgissap.co.kr:8000
           client: '100'
         app:
-          name: ZGWCL1DOCU16
+          name: ZGWCL1DOCU16T1
           description: Document edit
-          package: ZCL116
-          transport: EFXK900744
+          package: ZC116
+          transport: EFXK901676
         exclude:
           - /test/

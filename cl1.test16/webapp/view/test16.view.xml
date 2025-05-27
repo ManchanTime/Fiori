@@ -1,0 +1,177 @@
+<mvc:View controllerName="cl1.test16.cl1.test16.controller.test16"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:sfb="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable">
+    <Page id="page" title="{i18n>title}">
+        <f:DynamicPage id="dynamicPage" fitContent="true">
+            <f:header>
+                <f:DynamicPageHeader>
+                    <f:dependents>
+                        <c:CommandExecution command="Enter" enabled="true" />
+                    </f:dependents>
+                    <sfb:SmartFilterBar search="cmd:Enter" id="smartFilterBar" entitySet="DocuSet" filterBarExpanded="true" enableBasicSearch="false" basicSearchFieldName="Partner" persistencyKey="BP_Display">
+                        <sfb:customData>
+                            <c:CustomData key="defaultFilterBarExpanded" value='{"Bukrs": "true"}'/>
+                            <c:CustomData key="defaultShowAllFilters" value='{"Bukrs": "true"}'/>
+                            <!-- <c:CustomData key="defaultFilterBarExpanded" value='{"Name1": "true"}'/>
+                                <c:CustomData key="defaultShowAllFilters" value='{"Name1": "true"}'/> -->
+                        </sfb:customData>
+                    </sfb:SmartFilterBar>
+                </f:DynamicPageHeader>
+            </f:header>
+            <f:content>
+                <smartTable:SmartTable id="bpTable" header="비즈니스 파트너" entitySet="DocuSet" smartFilterId="smartFilterBar" tableType="ResponsiveTable" enableExport="true" beforeExport="onBeforeExport" showFullScreenButton="true" useVariantManagement="false" enableAutoColumnWidth="false" useTablePersonalisation="true" showRowCount="true">
+
+                    <!-- 레이아웃 정보 -->
+                    <smartTable:layoutData>
+                        <FlexItemData growFactor="1" baseSize="0%"/>
+                    </smartTable:layoutData>
+
+                    <!-- 커스텀 필터 -->
+                    <smartTable:customData>
+                        <!-- <c:CustomData key="defaultShowAllFilters" value='{"Partner": "true", "Name1": "true"}'/>
+                            <c:CustomData key="defaultFilterBarExpanded" value='{"Partner": "true", "Name1": "true"}'/> -->
+                    </smartTable:customData>
+
+                    <!-- 툴바 영역 -->
+                    <smartTable:customToolbar>
+                        <OverflowToolbar design="Transparent">
+                            <ToolbarSpacer/>
+                            <OverflowToolbarButton icon="sap-icon://write-new" tooltip="Create" press="onCreate"/>
+                        </OverflowToolbar>
+                    </smartTable:customToolbar>
+
+                    <!-- ✅ 여기부터 커스텀 컬럼 및 셀 추가 -->
+                    <Table>
+
+                        <!-- 컬럼 정의 -->
+                        <!-- <columns>
+                            <Column id="colPartner">
+                                <header>
+                                    <Label text="파트너 번호"/>
+                                </header>
+                            </Column>
+                            <Column id="colName">
+                                <header>
+                                    <Label text="명칭"/>
+                                </header>
+                            </Column>
+                            <Column id="colRole">
+                                <header>
+                                    <Label text="역할"/>
+                                </header>
+                            </Column>
+                        </columns> -->
+
+                        <!-- 셀 내용 정의 -->
+                        <ColumnListItem type="Navigation" press="onRowPress">
+                            <cells>
+                                <!-- <Text text="{Partner}"/>
+                                <Text text="{Name1}"/>
+                                <ObjectStatus text="{RoleText}" state="Success"/> -->
+                            </cells>
+                        </ColumnListItem>
+
+                    </Table>
+                </smartTable:SmartTable>
+            </f:content>
+        </f:DynamicPage>
+        <!-- <t:Table id="docuTable" rows="{/DocuSet}" selectionMode="Single" paste="onPaste" ariaLabelledBy="title" visibleRowCountMode="Auto" minAutoRowCount="10">
+                    <t:extension>
+                        <OverflowToolbar >
+                            <Button text="Search" icon="sap-icon://search" press="onSearch" />
+                            <Input id="IBktxt" placeholder="Header text" width="12rem" />
+                            <Input id="IBlart" placeholder="Type" width="5rem" />
+                        </OverflowToolbar>
+                    </t:extension>
+                    <t:columns>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#DocuSet/Bukrs/@sap:label}" />
+                            <t:template>
+                                <Text text="{Bukrs}" wrapping="false" class="centeredText"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#DocuSet/Belnr/@sap:label}" />
+                            <t:template>
+                                <Text text="{Belnr}" wrapping="false" class="centeredText"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#DocuSet/Gjahr/@sap:label}" />
+                            <t:template>
+                                <Text text="{Gjahr}" wrapping="false" class="centeredText"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#DocuSet/Budat/@sap:label}" />
+                            <t:template>
+                                <Text text="{Budat}" wrapping="false" class="centeredText"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#DocuSet/Blart/@sap:label}" />
+                            <t:template>
+                                <Text text="{Blart}" wrapping="false" class="centeredText"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#DocuSet/Bktxt/@sap:label}" />
+                            <t:template>
+                                <Text text="{Bktxt}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#DocuSet/Wrbtr/@sap:label}" />
+                            <t:template>
+                                <Text text="{
+                                        parts:[{path:'Wrbtr'},{path:'Waers'}],
+                                        type: 'sap.ui.model.type.Currency',
+                                        formatOptions: {showMeasure: true }
+                                    }" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem" autoResizable="true">
+                            <Label text="{/#DocuSet/Waers/@sap:label}" />
+                            <t:template>
+                                <Text text="{Waers}" wrapping="false" class="centeredText"/>
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table> -->
+        <!-- <OverflowToolbar >
+                    <ToolbarSpacer width="45rem" />
+                    <Label text="Contents" />
+                    <Button text="Clear" icon="sap-icon://clear-all" press="onClear" />
+                    <Button text="Display" icon="sap-icon://display" press="onDisplay" />
+                    <Button text="Create" icon="sap-icon://create" press="onCreate" />
+                    <Button text="Edit" icon="sap-icon://edit" press="onUpdate" />
+                    <Button text="Delete" icon="sap-icon://delete" press="onDelete" />
+                </OverflowToolbar>
+                <f:SimpleForm id="contentForm" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="Company" />
+                        <Input id="Bukrs" placeholder="Company" width="7rem"/>
+                        <Label text="Fiscal year" />
+                        <Input id="Gjahr" placeholder="Year" width="5rem"/>
+                        <Label text="Document type" />
+                        <Input id="Blart" placeholder="Type" width="4rem"/>
+                        <Label text="Posting date" />
+                        <Input id="Budat" placeholder="yyyy-MM-dd" width="7rem"/>
+                        <Label text="Document no" />
+                        <Input id="Belnr" placeholder="Document no" width="10rem" maxLength="10"/>
+                        <Label text="Header text" />
+                        <Input id="Bktxt" placeholder="Header text" width="15rem"/>
+                        <Label text="Currency" />
+                        <Input id="Waers" placeholder="Currency" width="5rem"/>
+                        <Label text="Document amount" />
+                        <Input id="Wrbtr" placeholder="Amount" width="10rem"/>
+                    </f:content>
+                </f:SimpleForm> -->
+    </Page>
+</mvc:View>

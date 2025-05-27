@@ -8,7 +8,7 @@
     <Page id="page" title="{i18n>title}">
         <Panel >
             <VBox >
-                <t:Table id="docuTable" rows="{/DocumentSet}" selectionMode="Single" paste="onPaste" ariaLabelledBy="title" visibleRowCountMode="Auto" minAutoRowCount="10">
+                <t:Table id="docuTable" rows="{/DocuSet}" selectionMode="Single" paste="onPaste" ariaLabelledBy="title" visibleRowCountMode="Auto" minAutoRowCount="10">
                     <t:extension>
                         <OverflowToolbar >
                             <Button text="Search" icon="sap-icon://search" press="onSearch" />
@@ -18,43 +18,43 @@
                     </t:extension>
                     <t:columns>
                         <t:Column width="11rem" autoResizable="true">
-                            <Label text="{/#DocumentSet/Bukrs/@sap:label}" />
+                            <Label text="{/#DocuSet/Bukrs/@sap:label}" />
                             <t:template>
                                 <Text text="{Bukrs}" wrapping="false" class="centeredText"/>
                             </t:template>
                         </t:Column>
                         <t:Column width="11rem" autoResizable="true">
-                            <Label text="{/#DocumentSet/Belnr/@sap:label}" />
+                            <Label text="{/#DocuSet/Belnr/@sap:label}" />
                             <t:template>
                                 <Text text="{Belnr}" wrapping="false" class="centeredText"/>
                             </t:template>
                         </t:Column>
                         <t:Column width="11rem" autoResizable="true">
-                            <Label text="{/#DocumentSet/Gjahr/@sap:label}" />
+                            <Label text="{/#DocuSet/Gjahr/@sap:label}" />
                             <t:template>
                                 <Text text="{Gjahr}" wrapping="false" class="centeredText"/>
                             </t:template>
                         </t:Column>
                         <t:Column width="11rem" autoResizable="true">
-                            <Label text="{/#DocumentSet/Budat/@sap:label}" />
+                            <Label text="{/#DocuSet/Budat/@sap:label}" />
                             <t:template>
                                 <Text text="{Budat}" wrapping="false" class="centeredText"/>
                             </t:template>
                         </t:Column>
                         <t:Column width="11rem" autoResizable="true">
-                            <Label text="{/#DocumentSet/Blart/@sap:label}" />
+                            <Label text="{/#DocuSet/Blart/@sap:label}" />
                             <t:template>
                                 <Text text="{Blart}" wrapping="false" class="centeredText"/>
                             </t:template>
                         </t:Column>
                         <t:Column width="11rem" autoResizable="true">
-                            <Label text="{/#DocumentSet/Bktxt/@sap:label}" />
+                            <Label text="{/#DocuSet/Bktxt/@sap:label}" />
                             <t:template>
                                 <Text text="{Bktxt}" wrapping="false" />
                             </t:template>
                         </t:Column>
                         <t:Column width="11rem" autoResizable="true">
-                            <Label text="{/#DocumentSet/Wrbtr/@sap:label}" />
+                            <Label text="{/#DocuSet/Wrbtr/@sap:label}" />
                             <t:template>
                                 <!-- <Text text="{Wrbtr}" wrapping="false" /> -->
                                 <Text text="{
@@ -65,7 +65,7 @@
                             </t:template>
                         </t:Column>
                         <t:Column width="11rem" autoResizable="true">
-                            <Label text="{/#DocumentSet/Waers/@sap:label}" />
+                            <Label text="{/#DocuSet/Waers/@sap:label}" />
                             <t:template>
                                 <Text text="{Waers}" wrapping="false" class="centeredText"/>
                             </t:template>

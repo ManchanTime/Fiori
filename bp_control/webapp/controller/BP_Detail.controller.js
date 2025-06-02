@@ -25,7 +25,7 @@ sap.ui.define([
                 onBeforeShow: function (oEvent) {
                     // 여기에 필요한 갱신 로직
                     let sPartnerId = sessionStorage.getItem("partnerId");
-                    if (sPartnerId) {
+                    if (sPartnerId && this.getView().getModel("PartnerSet")) {
                         console.log(sPartnerId);
                         this._onInitData(sPartnerId);
                     }
@@ -36,7 +36,7 @@ sap.ui.define([
         _onObjectMatched: function (oEvent) {
             let sPartnerId = oEvent.getParameter("arguments").partnerId;
             sessionStorage.setItem("partnerId", sPartnerId);
-            // this._onInitData(sPartnerId);
+            this._onInitData(sPartnerId);
         },
 
         _onInitData: function (sPartnerId) {

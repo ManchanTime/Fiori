@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+    <Dialog id="rowDetailDialog" title="자재 폐기 상세 정보" contentWidth="400px" contentHeight="auto" draggable="true" resizable="true">
+        <VBox class="sapUiSmallMargin">
+            <Text text="자재번호: {dialogModel>/selectedRow/Matnr}" />
+            <Text text="자재이름: {dialogModel>/selectedRow/Maktx}" />
+            <Text text="불량률: {dialogModel>/selectedRow/Perdi}%" />
+            <Text text="불량사유: {dialogModel>/selectedRow/Resontext}" />
+            <!-- <Text text="참조번호: {dialogModel>/selectedRow/Refno}" /> -->
+
+            <viz:VizFrame id="idDonutFrame" uiConfig="{applicationSet:'fiori'}" height="30rem" width="100%" vizType='donut' vizProperties="{
+                                                                                                                                    title:{text:'폐기율'},
+                                                                                                                                    legend:{drawingEffect:'glossy'},
+                                                                                                                                    plotArea:{drawingEffect:'glossy'}
+                                                                                                                                }">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{logModel>/donut}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="대상" value="{Name1}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="비율" value="{Wrbtr}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="size" type="Measure" values="비율" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension" values="대상" />
+                </viz:feeds>
+
+                <viz:dependents>
+                    <viz:Popover id="idPopOverDonut" />
+                </viz:dependents>
+            </viz:VizFrame>
+        </VBox>
+        <beginButton>
+            <Button text="닫기" press=".onCloseDialog" />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

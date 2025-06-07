@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+    <viz:VizFrame id="idDonutChart2" uiConfig="{applicationSet:'fiori'}" height="100%" width="28rem" vizType="donut" vizProperties="{
+                  title: { text: '원인별 폐기량 분포' },
+                  legend: { isVisible: true },
+                  plotArea: { dataLabel: { visible: true, type: 'percentage' } }
+              }">
+
+        <viz:dataset>
+            <viz.data:FlattenedDataset data="{donutReasonModel>/DonutChartData}">
+                <viz.data:dimensions>
+                    <viz.data:DimensionDefinition name="불량 사유" value="{Reason}" />
+                </viz.data:dimensions>
+                <viz.data:measures>
+                    <viz.data:MeasureDefinition name="폐기량(개)" value="{TotalDisme}" />
+                </viz.data:measures>
+            </viz.data:FlattenedDataset>
+        </viz:dataset>
+
+        <viz:feeds>
+            <viz.feeds:FeedItem uid="size" type="Measure" values="폐기량(개)" />
+            <viz.feeds:FeedItem uid="color" type="Dimension" values="불량 사유" />
+        </viz:feeds>
+    </viz:VizFrame>
+</core:FragmentDefinition>

@@ -1,0 +1,165 @@
+<mvc:View controllerName="zc102ppdispos.zc102ppdispos.controller.zc102_pp_dispos"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:sfb="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:sv="sap.ui.comp.smartvariants"
+    xmlns:layout="sap.ui.layout"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:dnd="sap.ui.core.dnd"
+    xmlns:dnd-grid="sap.f.dnd">
+    <Page id="page" title="{i18n>title}">
+        <layout:Splitter id="mainSplitter" orientation="Horizontal" width="100%" height="100%">
+
+            <!-- ▷ 왼쪽: 플랜트 › 자재 트리 -->
+            <layout:contentAreas>
+                <Tree id="plantTree" headerText="플랜트 별 폐기트리" mode="SingleSelectMaster" selectionChange="onTreeItemPress" items="{
+                        path: 'treeModel>/PlantTree',
+                        parameters: { arrayNames: ['nodes'] }
+                    }">
+                    <layoutData>
+                        <layout:SplitterLayoutData size="250px" />
+                    </layoutData>
+
+                    <StandardTreeItem title="{treeModel>Name}" icon="{
+                        = ${treeModel>Matnr}
+                            ? 'sap-icon://product'
+                            : 'sap-icon://factory'
+                        }" tooltip="{
+                        = ${treeModel>Matnr}
+                            ? ${treeModel>Matnr}
+                            : ${treeModel>Stlname}
+                        }" />
+                </Tree>
+            </layout:contentAreas>
+
+            <!-- ▷ 오른쪽: 기존 Table / Chart + 새로 추가할 Pivot 테이블 -->
+            <layout:contentAreas>
+
+                <f:DynamicPage id="dynamicPage" fitContent="true">
+                    <f:header>
+                        <f:DynamicPageHeader>
+                            <f:dependents>
+                                <c:CommandExecution command="Enter" enabled="true" />
+                            </f:dependents>
+                            <sfb:SmartFilterBar search="cmd:Enter" id="smartFilterBar" visible="false" entitySet="Dispo" filterBarExpanded="true" enableBasicSearch="false" basicSearchFieldName="Matnr" persistencyKey="Dispo" liveMode="true">
+                                <sfb:customData>
+                                    <c:CustomData key="defaultFilterBarExpanded" value='{"Matnr": "true"}'/>
+                                    <c:CustomData key="defaultShowAllFilters" value='{"Matnr": "true"}'/>
+                                </sfb:customData>
+                            </sfb:SmartFilterBar>
+                        </f:DynamicPageHeader>
+                    </f:header>
+                    <f:content>
+                        <VBox >
+                            <f:GridList id="gridList" items="{logModel>/items}" class="sapUiSmallMarginBottom">
+
+                                <f:dragDropConfig>
+                                    <dnd:DragInfo sourceAggregation="items" />
+                                    <dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Horizontal" drop="onDrop" />
+                                </f:dragDropConfig>
+
+                                <f:customLayout>
+                                    <grid:GridBoxLayout boxMinWidth="17rem" />
+                                </f:customLayout>
+
+                                <f:GridListItem counter="{counter}" highlight="{logModel>highlight}" type="{logModel>type}" unread="{logModel>unread}">
+                                    <VBox height="100%">
+                                        <VBox class="sapUiSmallMargin">
+                                            <layoutData>
+                                                <FlexItemData growFactor="1" shrinkFactor="0" />
+                                            </layoutData>
+                                            <!-- 🔹 Title 강조 + 크기 증가 -->
+                                            <Title text="{logModel>Name1}" wrapping="true" class="sapMTitle sapUiTinyMarginBottom sapMTitleLarge" />
+
+                                            <!-- 🔹 Label 강조 + 사용자 정의 클래스 -->
+                                            <Label text="{logModel>Rate}" wrapping="true" class="kpiRateLarge sapUiTinyMarginTop sapUiTinyMarginBottom sapMLabelBold" />
+                                        </VBox>
+                                    </VBox>
+                                </f:GridListItem>
+                            </f:GridList>
+
+                            <VBox class="sapUiSmallMarginBottom">
+                                <!-- <HBox width="100%" height="15rem"> -->
+                                <HBox id="donutWrapper" height="280px" width="100%" justifyContent="SpaceAround">
+                                    <core:Fragment fragmentName="zc102ppdispos.zc102ppdispos.view.DonutChart1" type="XML" />
+                                    <core:Fragment fragmentName="zc102ppdispos.zc102ppdispos.view.DonutChart2" type="XML" />
+                                </HBox>
+                            </VBox>
+                            <!-- </HBox> -->
+                            <VBox >
+                                <Label text="차트 유형 선택" labelFor="chartTypeSelect" />
+                                <Select id="chartTypeSelect" change="onChartTypeChange">
+                                    <items>
+                                        <core:Item key="line" text="선형 차트" />
+                                        <core:Item key="column" text="막대 차트" />
+                                    </items>
+                                </Select>
+                            </VBox>
+                            <viz:VizFrame id="idLineFrame" uiConfig="{applicationSet:'fiori'}" height="30rem" width="100%" vizType="line" vizProperties="{
+                                                                                            title: { text: '월별 불량률 추이' },
+                                                                                            legend: { drawingEffect: 'glossy' },
+                                                                                            plotArea: { dataLabel: { visible: true }, drawingEffect: 'glossy' }
+                                                                                        }">
+
+                                <viz:dataset>
+                                    <viz.data:FlattenedDataset data="{chartModel>/MonthlyPlantMaterialPerdi}">
+                                        <viz.data:dimensions>
+                                            <viz.data:DimensionDefinition name="월" value="{Month}" />
+                                            <viz.data:DimensionDefinition name="자재" value="{Maktx}" />
+                                        </viz.data:dimensions>
+                                        <viz.data:measures>
+                                            <viz.data:MeasureDefinition name="불량률(%)" value="{TotalPerdi}" />
+                                        </viz.data:measures>
+                                    </viz.data:FlattenedDataset>
+                                </viz:dataset>
+
+                                <viz:feeds>
+                                    <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="불량률(%)" />
+                                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="월" />
+                                    <viz.feeds:FeedItem uid="color" type="Dimension" values="자재" />
+                                </viz:feeds>
+
+                                <viz:dependents>
+                                    <viz:Popover id="idPopOver" />
+                                </viz:dependents>
+                            </viz:VizFrame>
+                            <VBox class="sapUiSmallMarginBottom">
+                                <smartTable:SmartTable id="disposTable" header="자재 폐기 정보" entitySet="Dispo" smartFilterId="smartFilterBar" tableType="Table" enableExport="true" beforeExport="onBeforeExport" showFullScreenButton="true" useVariantManagement="false" enableAutoColumnWidth="false" useTablePersonalisation="false" showRowCount="true">
+
+                                    <smartTable:layoutData>
+                                        <FlexItemData growFactor="1" baseSize="0%"/>
+                                    </smartTable:layoutData>
+
+                                    <smartTable:customData>
+                                        <c:CustomData key="defaultShowAllFilters" value='{"Matnr": "true"}'/>
+                                        <c:CustomData key="defaultFilterBarExpanded" value='{"Matnr": "true"}'/>
+                                    </smartTable:customData>
+
+                                    <Table growing="true" growingThreshold="10" growingScrollToLoad="true">
+                                        <ColumnListItem type="Navigation" press="onRowPress">
+                                            <cells>
+                                            </cells>
+                                        </ColumnListItem>
+
+                                    </Table>
+                                </smartTable:SmartTable>
+                            </VBox>
+                        </VBox>
+
+                    </f:content>
+                    <!-- VizFrame Chart -->
+                </f:DynamicPage>
+            </layout:contentAreas>
+
+        </layout:Splitter>
+    </Page>
+</mvc:View>

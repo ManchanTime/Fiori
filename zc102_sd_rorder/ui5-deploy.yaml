@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: zc102sdrorder.zc102sdrorder
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://bgissap1.bgissap.co.kr:8000
+          client: '100'
+        app:
+          name: ZC102_SD_ORDER
+          description: 정기 주문 관리
+          package: ZC102
+          transport: EFXK901109
+        exclude:
+          - /test/

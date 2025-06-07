@@ -1,0 +1,91 @@
+<mvc:View
+  controllerName="zc102sdrorder.zc102sdrorder.controller.Order_Create"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:u="sap.ui.unified"
+  xmlns:layout="sap.ui.layout.form"
+  displayBlock="true">
+
+  <Page title="정기 주문 생성" showNavButton="true" navButtonPress="onNavBack">
+    <VBox alignItems="Center" justifyContent="Center">
+
+      <layout:SimpleForm
+        id="OrderCreateForm"
+        layout="ResponsiveGridLayout"
+        labelSpanM="3"
+        emptySpanM="1"
+        columnsM="2"
+        width="600px"
+        class="sapUiSmallMargin sapUiContentPadding sapUiSizeCompact">
+
+        <Label text="고객 번호" />
+        <Input id="inpCusno" placeholder="CUS0001" />
+
+        <Label text="비즈니스 파트너" />
+        <Input id="inpPartner" placeholder="BP0001" />
+
+        <Label text="주문 일자" />
+        <DatePicker id="inpAudat" />
+
+        <Label text="자재 코드" />
+        <Input id="inpMatnr" placeholder="M0001" />
+
+        <Label text="수량" />
+        <Input id="inpMenge" type="Number" />
+
+        <Label text="통화" />
+        <Select id="inpWaers">
+          <items>
+            <core:Item key="KRW" text="KRW" />
+            <core:Item key="USD" text="USD" />
+            <core:Item key="EUR" text="EUR" />
+          </items>
+        </Select>
+
+        <Label text="납기 예정일" />
+        <DatePicker id="inpDelid" />
+
+        <Label text="정기 계약서" />
+        <HBox>
+          <Input id="inContract" placeholder="계약서 업로드" />
+          
+          <u:FileUploader
+            id="fileUploader"
+            buttonOnly="true"
+            buttonText="파일 업로드"
+            uploadOnChange="false"
+            change="onFileChange"
+            fileType="jpg,png,jpeg,pdf"
+            mimeType="image/jpeg,image/png,application/pdf" />
+        </HBox>
+
+        <!-- 파일 미리보기 영역 -->
+        <VBox class="sapUiSmallMarginTop" alignItems="Center" justifyContent="Center">
+          <Image
+            id="imagePreview"
+            src="{CreateBPModel>/ImagePreviewSrc}"
+            visible="{= ${CreateBPModel>/FileType} === 'image' }"
+            width="14rem"
+            height="14rem"
+            decorative="false"
+            alt="미리보기 이미지" />
+
+          <Panel visible="{= ${CreateBPModel>/FileType} === 'pdf' }" width="100%">
+            <Text text="PDF 미리보기" />
+            <ScrollContainer height="500px" width="100%" vertical="true">
+              <core:HTML content="&lt;object data='{CreateBPModel&gt;/ImagePreviewSrc}' type='application/pdf' width='100%' height='500px'&gt;&lt;/object&gt;" />
+            </ScrollContainer>
+          </Panel>
+        </VBox>
+
+        <Label text="" />
+        <HBox>
+          <Button text="정기 주문 저장" press="onSave" type="Emphasized" class="sapUiTinyMarginEnd" />
+          <Button text="취소" press="onCancel" />
+        </HBox>
+
+      </layout:SimpleForm>
+    </VBox>
+  </Page>
+</mvc:View>

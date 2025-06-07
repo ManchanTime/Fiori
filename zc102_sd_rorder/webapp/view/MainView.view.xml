@@ -1,0 +1,140 @@
+<mvc:View controllerName="zc102sdrorder.zc102sdrorder.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:m="sap.m"
+    xmlns:sfb="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:core="sap.ui.core"
+    xmlns:sv="sap.ui.comp.smartvariants">
+
+ 
+
+    <!-- ✅ Dialog: Page 바깥에 위치시켜야 정상 동작 -->
+    <Dialog
+        id="bpDialog"
+        title="비즈니스 파트너 상세"
+        contentWidth="500px"
+        contentHeight="300px"
+        draggable="true"
+        resizable="true"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--content">
+
+        <VBox class="sapUiSmallMargin">
+            <Text id="bpDetailTitle" text="{bpOrders>DialogTitle}" class="sapUiSmallMarginBottom" />
+
+            <List id="bpOrderList" items="{bpOrders>/orders}" noDataText="해당 일자의 주문 데이터가 없습니다.">
+                <StandardListItem
+                    title="{bpOrders>Partner}"
+                    description="수량: {bpOrders>Menge}, 금액: {bpOrders>Netwr} {bpOrders>Waers}"
+                    icon="sap-icon://shipping-status"
+                    iconInset="false"
+                    type="Active"
+                    press="onOrderPress"/>
+            </List>
+        </VBox>
+
+        <beginButton>
+            <Button text="닫기" press="onDialogClose" />
+        </beginButton>
+    </Dialog>
+
+   <m:Dialog
+        id="pdfDialog"
+        title="정기 계약서 미리보기"
+        contentWidth="90%"
+        contentHeight="90%"
+        resizable="true"
+        draggable="true"
+        stretch="true"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--content">
+
+        <VBox fitContainer="true" width="100%" height="100%">
+            <core:HTML id="pdfHtml" content="" />
+        </VBox>
+
+        <beginButton>
+            <m:Button text="닫기" press="onDialogClose" />
+        </beginButton>
+
+    </m:Dialog>
+
+    <!-- ✅ Page는 Dialog 아래에서 시작 -->
+    <Page id="page" title="{i18n>title}">
+
+        <VBox class="sapUiMediumMargin" alignItems="Center" justifyContent="Center">
+            <HBox wrap="Wrap" justifyContent="Center" alignItems="Center" class="sapUiMediumMargin">
+
+                <GenericTile header="매 월 10일" subheader="고객 수 : 5" press="onBpPress" class="sapUiSmallMargin" frameType="OneByOne">
+                    <TileContent>
+                        <NumericContent value="5" icon="sap-icon://group" valueColor="Good" indicator="None" />
+                    </TileContent>
+                </GenericTile>
+
+                <GenericTile header="매 월 20일" subheader="고객 수 : 5" press="onBpPress" class="sapUiSmallMargin" frameType="OneByOne">
+                    <TileContent>
+                        <NumericContent value="5" icon="sap-icon://group" valueColor="Good" indicator="None" />
+                    </TileContent>
+                </GenericTile>
+
+                <GenericTile header="매 월 30일" subheader="고객 수 : 6" press="onBpPress" class="sapUiSmallMargin" frameType="OneByOne">
+                    <TileContent>
+                        <NumericContent value="6" icon="sap-icon://group" valueColor="Good" indicator="None" />
+                    </TileContent>
+                </GenericTile>
+
+            </HBox>
+        </VBox>
+
+        <f:DynamicPage id="dynamicPage" fitContent="true">
+            <f:header>
+                <f:DynamicPageHeader>
+                    <f:dependents>
+                        <c:CommandExecution command="Enter" enabled="true" />
+                    </f:dependents>
+                    <sfb:SmartFilterBar
+                        search="cmd:Enter"
+                        id="smartFilterBar"
+                        entitySet="OrderSet"
+                        filterBarExpanded="true"
+                        enableBasicSearch="true"
+                        basicSearchFieldName="Partner"
+                        persistencyKey="BP_Display"/>
+                </f:DynamicPageHeader>
+            </f:header>
+
+            <f:content>
+                <smartTable:SmartTable
+                    id="roderTable"
+                    header="정기 주문 목록"
+                    entitySet="OrderSet"
+                    smartFilterId="smartFilterBar"
+                    tableType="ResponsiveTable"
+                    enableExport="true"
+                    beforeExport="onBeforeExport"
+                    showFullScreenButton="true"
+                    useVariantManagement="false"
+                    enableAutoColumnWidth="false"
+                    useTablePersonalisation="true"
+                    showRowCount="true">
+
+                    <smartTable:customToolbar>
+                        <OverflowToolbar design="Transparent">
+                            <ToolbarSpacer/>
+                            <OverflowToolbarButton icon="sap-icon://write-new" tooltip="Create" press="onCreate"/>
+                        </OverflowToolbar>
+                    </smartTable:customToolbar>
+
+                    <Table>
+                        <ColumnListItem type="Navigation" press="onRowPress">
+                            <cells />
+                        </ColumnListItem>
+                    </Table>
+                </smartTable:SmartTable>
+            </f:content>
+        </f:DynamicPage>
+    </Page>
+</mvc:View>

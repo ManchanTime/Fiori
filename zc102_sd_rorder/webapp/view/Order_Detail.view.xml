@@ -1,0 +1,40 @@
+<mvc:View
+    controllerName="zc102sdrorder.zc102sdrorder.controller.Order_Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:forms="sap.ui.layout.form"
+    displayBlock="true">
+
+    <Page title="정기 주문 상세" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <forms:SimpleForm editable="false" layout="ColumnLayout">
+
+                <Label text="판매오더 번호"/>
+                <Text text="{VbelnSo}" />
+
+                <Label text="고객 번호"/>
+                <Text text="{Cusno}" />
+
+                <Label text="비즈니스 파트너"/>
+                <Text text="{Partner}" />
+
+                <Label text="자재 코드"/>
+                <Text text="{Matnr}" />
+
+                <Label text="수량"/>
+                <Text text="{Menge}" />
+
+                <Label text="주문일자"/>
+                <Text text="{ path: 'Audat', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }" />
+
+                <Label text="납기예정일"/>
+                <Text text="{ path: 'Delid', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }" />
+
+                <Label text="통화"/>
+                <Text text="{Waers}" />
+                </forms:SimpleForm>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

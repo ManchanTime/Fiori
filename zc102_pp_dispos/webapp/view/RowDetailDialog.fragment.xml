@@ -17,7 +17,7 @@
                                                                                                                                     plotArea:{drawingEffect:'glossy'}
                                                                                                                                 }">
                 <viz:dataset>
-                    <viz.data:FlattenedDataset data="{logModel>/donut}">
+                    <viz.data:FlattenedDataset data="{detailLogModel>/donut}">
                         <viz.data:dimensions>
                             <viz.data:DimensionDefinition name="대상" value="{Name1}" />
                         </viz.data:dimensions>

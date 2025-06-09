@@ -144,7 +144,7 @@
                                         <c:CustomData key="defaultFilterBarExpanded" value='{"Matnr": "true"}'/>
                                     </smartTable:customData>
 
-                                    <Table growing="true" growingThreshold="10" growingScrollToLoad="true">
+                                    <Table growing="false" growingThreshold="10" growingScrollToLoad="true">
                                         <ColumnListItem type="Navigation" press="onRowPress">
                                             <cells>
                                             </cells>

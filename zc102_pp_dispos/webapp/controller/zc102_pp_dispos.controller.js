@@ -84,7 +84,7 @@ sap.ui.define([
                         this._setMatnrDonutChart(oData);
                         this._setReasonDonutChart(oData);
                         this._setLogData(oData);
-                        console.log(oData)
+
                         if (oSmartFilterBar && oSmartFilterBar.search) {
                             this.onTreeItemPress({ getParameter: () => oFirstItem });
                         }
@@ -97,6 +97,7 @@ sap.ui.define([
             const chartRawMap = new Map();
             const yearSet = new Set();
             const allMonths = Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, "0"));
+            console.log("데이터", oData);
             // Step 1: 원본 데이터를 연도-월-자재 기준으로 저장
             oData.nodes.forEach(node => {
                 const date = new Date(node.Disda);
@@ -618,9 +619,10 @@ sap.ui.define([
                 const onUpdateFinished = () => {
                     const oBinding = oInnerTable.getBinding("rows") || oInnerTable.getBinding("items");
                     if (oBinding) {
-                        const aContexts = oBinding.getContexts();
+                        const aContexts = oBinding.getContexts(0, Infinity); // ✅ 더 안전하게 전체 가져오기
                         const aData = aContexts.map(ctx => ctx.getObject());
                         console.log("📦 조회 완료 후 추출된 데이터:", aData);
+                        console.log("데이터데이터데이터", aContexts);
 
                         // 차트 모델 세팅
                         const groupedData = {};
@@ -692,7 +694,7 @@ sap.ui.define([
                 { Name1: "정상", Wrbtr: 100 - perdi }
             ];
             const oLogModel = new sap.ui.model.json.JSONModel({ donut: donutData });
-            this.getView().setModel(oLogModel, "logModel");
+            this.getView().setModel(oLogModel, "detailLogModel");
 
             const sFragmentId = this.getView().getId(); // 예: "zc102ppdispos--View1"
 

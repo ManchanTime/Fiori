@@ -1,42 +1,11 @@
-## Application Details
-|               |
-| ------------- |
-|**Generation Date and Time**<br>Mon May 12 2025 12:33:49 GMT+0900 (Korean Standard Time)|
-|**App Generator**<br>@sap/generator-fiori-freestyle|
-|**App Generator Version**<br>1.16.5|
-|**Generation Platform**<br>Visual Studio Code|
-|**Template Used**<br>simple|
-|**Service Type**<br>SAP System (ABAP On Premise)|
-|**Service URL**<br>http://bgissap1.bgissap.co.kr:8000/sap/opu/odata/sap/ZC102_P_BP_BP_CREATE_CDS|
-|**Module Name**<br>bp_control|
-|**Application Title**<br>BP Display|
-|**Namespace**<br>bp_control|
-|**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.120.0|
-|**Enable Code Assist Libraries**<br>False|
-|**Enable TypeScript**<br>False|
-|**Add Eslint configuration**<br>False|
+![image](https://github.com/user-attachments/assets/119c5007-19fd-4554-91bf-79a0cb1ffefc)
 
-## bp_control
+![image](https://github.com/user-attachments/assets/3b0d0974-13de-4a99-bc1e-619fbb069bb9)
 
-Business Partner Control Program
+![image](https://github.com/user-attachments/assets/3c98f963-e648-4d00-aa8a-ab1865ac82ce)
 
-### Starting the generated app
+![image](https://github.com/user-attachments/assets/ae919092-e8b6-41e7-8e47-81cd82113637)
 
--   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply run the following from the generated app root folder:
+![image](https://github.com/user-attachments/assets/d3af84ab-214d-4098-866e-1c14cd6314c9)
 
-```
-    npm start
-```
-
-- It is also possible to run the application using mock data that reflects the OData Service URL supplied during application generation.  In order to run the application with Mock Data, run the following from the generated app root folder:
-
-```
-    npm run start-mock
-```
-
-#### Pre-requisites:
-
-1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
-
-
+![image](https://github.com/user-attachments/assets/05af4189-ac51-4a20-be79-1a0f8a0ee70c)

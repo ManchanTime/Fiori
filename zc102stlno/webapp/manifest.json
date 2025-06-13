@@ -135,7 +135,12 @@
               }
             },
             "tableSettings": {
-              "type": "ResponsiveTable"
+              "type": "ResponsiveTable",
+              "enableAutoColumnWidth": false,
+              "showFullScreenButton": true,
+              "enableExport": true,
+              "beforeExport": "onBeforeExport",
+              "loadDataOnAppLaunch": true
             }
           }
         },

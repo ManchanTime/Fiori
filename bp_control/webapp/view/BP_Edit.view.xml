@@ -164,7 +164,8 @@
                                     <t:Column width="20rem" autoResizable="true">
                                         <m:Label text="제품코드" />
                                         <t:template>
-                                            <m:Select id="custmatnrSelectEdit" editable="{CreateCusMatnrModel>IsInit}" change="onCusMatnrChange" selectedKey="{CreateCusMatnrModel>Matnr}" width="400px" items="{ path: 'BpSearch>/cusmatnr' }" class="sapUiSmallMarginBottom">
+                                            <m:Select id="custmatnrSelectEdit" editable="{CreateCusMatnrModel>IsInit}" change="onCusMatnrChange"
+                                             selectedKey="{CreateCusMatnrModel>Matnr}" width="400px" items="{ path: 'BpSearch>/cusmatnr' }" class="sapUiSmallMarginBottom">
                                                 <core:Item key="{BpSearch>Matnr}" text="{= ${BpSearch>Matnr} + ' - ' + ${BpSearch>Maktx} }" />
                                             </m:Select>
                                         </t:template>

@@ -732,12 +732,14 @@ sap.ui.define([
                 telV = oModelPartner.getProperty("/Telf1").replace(/\D/g, "");
                 addV = oModelPartner.getProperty("/Stras") + " " + oModelPartner.getProperty("/Detail");
 
-                aVendorList = {
-                    Name1: nameVendor,
-                    Telf1: telV,
-                    Stras: addV,
-                    Knkli: oModelVendor.getProperty("/Knkli")
-                }
+                aVendorList = [
+                    {
+                        Name1: nameVendor,
+                        Telf1: telV,
+                        Stras: addV,
+                        Knkli: oModelVendor.getProperty("/Knkli")
+                    }
+                ]
 
                 // Index 필드를 제거한 새 배열 만들기
                 aCleanedAccountList = aAccountList.map(({ Index, ...rest }) => rest).filter((item, index, self) =>
@@ -812,21 +814,21 @@ sap.ui.define([
                 success: function () {
                     console.log("Save Save Save Okay~~~!!");
                 },
-                // error: function (oError) { // ✅ 여기에 oError를 명시해야 함
-                //     let sMessage = "알 수 없는 오류 발생";
+                error: function (oError) { // ✅ 여기에 oError를 명시해야 함
+                    let sMessage = "알 수 없는 오류 발생";
 
-                //     try {
-                //         const oResponse = JSON.parse(oError.responseText);
-                //         if (oResponse.error?.message?.value) {
-                //             sMessage = oResponse.error.message.value;
-                //         }
-                //     } catch (e) {
-                //         sMessage = oError.message || "응답 파싱 실패";
-                //     }
+                    try {
+                        const oResponse = JSON.parse(oError.responseText);
+                        if (oResponse.error?.message?.value) {
+                            sMessage = oResponse.error.message.value;
+                        }
+                    } catch (e) {
+                        sMessage = oError.message || "응답 파싱 실패";
+                    }
 
-                //     console.error("❌ SAP OData 오류:", oError);
-                //     sap.m.MessageBox.error("SAP 오류:\n" + sMessage);
-                // }
+                    console.error("❌ SAP OData 오류:", oError);
+                    sap.m.MessageBox.error("SAP 오류:\n" + sMessage);
+                }
             });
             // sap.m.MessageToast.show("업로드 성공!");
             // history.back(); // 또는 window.history.back();
